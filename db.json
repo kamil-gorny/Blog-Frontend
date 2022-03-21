@@ -1,0 +1,11 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "(Write-up) THM: Vulnversity",
+      "postImage": "https://miro.medium.com/max/1400/0*83AiKjLVw0DNG4a7",
+      "author": "Kamil Górny",
+      "authorImage": "https://randomuser.me/api/portraits/men/55.jpg"
+    }
+  ]
+}
