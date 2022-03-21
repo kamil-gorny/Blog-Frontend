@@ -22,7 +22,13 @@
 
 <script>
 export default {
-  name: "PostHeader"
+  name: "PostHeader",
+  props:{
+    title: String,
+    postImage: String,
+    author: String,
+    authorImage:String,
+  }
 }
 </script>
 
