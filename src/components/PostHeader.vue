@@ -28,7 +28,8 @@ export default {
     postImage: String,
     author: String,
     authorImage:String,
-  }
+  },
+
 }
 </script>
 
