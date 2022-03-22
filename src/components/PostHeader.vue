@@ -1,14 +1,14 @@
 <template>
   <div class="postHeader">
     <div class="postMainHeader">
-      <img class="postImage" src="../assets/post-image.png" alt="post-image">
-      <p class="postTitle">(Write-up) THM: Vulnversity</p>
+      <img class="postImage" :src="postImage" alt="post-image">
+      <p class="postTitle">{{ title }}</p>
     </div>
     <div class="postSubHeader">
       <div class="postSubHeader--left">
-        <img class="profileImage" src="../assets/profile.png" alt="profile image">
-        <p class="postAuthor">Kamil Górny</p>
-        <p class="postProperties">Sun 19 Dec | 4 min read</p>
+        <img class="profileImage" :src="authorImage" alt="profile image">
+        <p class="postAuthor">{{ author }}</p>
+        <p class="postProperties">{{ creationDate }}</p>
       </div>
       <div class="postSubHeader--right">
         <i class="fa-brands fa-facebook"></i>
@@ -23,42 +23,44 @@
 <script>
 export default {
   name: "PostHeader",
-  props:{
+  props: {
     title: String,
     postImage: String,
     author: String,
-    authorImage:String,
+    authorImage: String,
+    creationDate: String,
   },
 
 }
 </script>
 
 <style scoped>
-.postHeader{
+.postHeader {
   display: flex;
   color: #3B454E;
-  font-size:40px;
-  margin-top:150px;
+  font-size: 40px;
+  margin-top: 150px;
   flex-direction: column;
   margin-left: auto;
   margin-right: auto;
-  color: #3B454E;
 }
-.postMainHeader{
+
+.postMainHeader {
   display: flex;
   flex-direction: row;
 }
-.postTitle{
+
+.postTitle {
   align-self: flex-end;
-  margin-left:20px;
+  margin-left: 20px;
 }
 
-.postImage{
+.postImage {
   width: 100px;
   height: 100px;
 }
 
-.postSubHeader{
+.postSubHeader {
   font-size: 18px;
   margin-top: 50px;
   display: flex;
@@ -66,35 +68,40 @@ export default {
   justify-content: space-between;
 }
 
-.profileImage{
+.profileImage {
   width: 30px;
   height: 30px;
+  border-radius: 50%;
 }
-.postAuthor{
+
+.postAuthor {
   font-weight: bold;
 }
-.postProperties{
-  color:#D6D8DA;
+
+.postProperties {
+  color: #D6D8DA;
 }
-hr{
-  margin:0;
+
+hr {
+  margin: 0;
   height: 1px;
   width: 100%;
   background-color: #D6D8DA;
   border: none;
 }
-.postSubHeader--left{
+
+.postSubHeader--left {
   display: flex;
   align-items: center;
   flex-direction: row;
   gap: 15px;
 }
 
-.postSubHeader--right{
+.postSubHeader--right {
   display: flex;
   align-items: center;
   flex-direction: row;
-  width:65px;
+  width: 65px;
   justify-content: space-between;
 }
 </style>
