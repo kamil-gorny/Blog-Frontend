@@ -20,10 +20,11 @@ export default {
 <style>
 body {
   font-family: 'Helvetica', sans-serif;
+  color: #3B454E;
+  box-sizing: border-box;
 }
 
 .container{
-  width: 90%;
   display: flex;
   margin: auto;
 }
