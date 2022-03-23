@@ -41,8 +41,6 @@ export default {
   font-size: 40px;
   margin-top: 150px;
   flex-direction: column;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .postMainHeader {
