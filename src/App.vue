@@ -23,7 +23,9 @@ body {
   color: #3B454E;
   box-sizing: border-box;
 }
-
+ul{
+  padding: 0;
+}
 .container{
   display: flex;
   margin: auto;

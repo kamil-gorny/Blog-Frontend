@@ -1,5 +1,6 @@
 <template>
-  <div class="navbar">
+  <nav>
+    <ul class="nav">
       <div class="left-nav">
         <img class="category-image" src="../assets/category-image.png" alt="">
         <p class="category-name">Writeups</p>
@@ -7,14 +8,26 @@
         <img src="../assets/post-image.png" alt="" class="post-image">
         <p class="post-title">(Write-up) THM: Vulnversity</p>
       </div>
-      <div class="right-nav">
+
+      <li class="nav-item">
         <i class="fa-solid fa-magnifying-glass"></i>
         <p>Search</p>
         <p>|</p>
+      </li>
+      <li class="nav-item">
         <p>Menu</p>
         <i class="fa-solid fa-chevron-down"></i>
-      </div>
-  </div>
+        <ul class="dropdown">
+          <li><i class="fa-solid fa-user"></i>Profile</li>
+          <li><i class="fa-solid fa-gear"></i>Settings</li>
+          <li><i class="fa-solid fa-door-open"></i>Logout</li>
+        </ul>
+      </li>
+
+
+    </ul>
+
+  </nav>
 </template>
 
 <script>
@@ -24,31 +37,70 @@ export default {
 </script>
 
 <style scoped>
-.navbar{
-  width: 100%;
+
+.nav {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding-left: 20px;
-  padding-right: 20px;
-  box-sizing: border-box;
-  font-size:14px;
-}
-.left-nav{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
-  gap:10px;
+
 }
-.right-nav{
+
+.left-nav {
+  margin-right: auto;
   display: flex;
+  gap: 10px;
   flex-direction: row;
-  align-items: center;
-  gap:10px;
 }
-.left-nav > img{
+
+.left-nav > img {
   height: 15px;
   width: 15px;
+}
+
+.nav-item {
+  list-style: none;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  padding-right: 10px;
+}
+
+.nav-item:hover {
+  cursor: pointer;
+}
+
+.nav-item:hover ul, .nav-item:focus ul {
+  visibility: visible;
+  opacity: 1;
+}
+
+.dropdown {
+  position: absolute;
+  top: 1rem;
+  left: -6rem;
+  list-style: none;
+  box-shadow: 0px 7px 5px 0px rgba(0, 0, 0, 0.2);
+  display: flex;
+  border-radius: 5px;
+  flex-direction: column;
+  gap: 0.5rem;
+  opacity: 0;
+  visibility: hidden;
+  width: 150px;
+  transition: opacity 200ms ease-in-out;
+  padding: 10px 5px;
+}
+
+.dropdown > li {
+  transition: background-color 200ms ease-in-out;
+  padding: 10px 5px;
+}
+.dropdown > li > i{
+  padding-right: 8px;
+}
+.dropdown > li:hover {
+  background-color: #f1f1f1;
+  cursor: pointer;
 }
 </style>
