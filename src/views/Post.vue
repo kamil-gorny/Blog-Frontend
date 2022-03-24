@@ -4,7 +4,7 @@
                 :creationDate="post.creationDate"/>
     <div class="post" v-html="markdownToHtml"></div>
     <Newsletter/>
-
+    <SocialsBar/>
   </div>
 </template>
 
@@ -13,12 +13,14 @@ import {marked} from 'marked';
 import hljs from "highlight.js";
 import PostHeader from "@/components/PostHeader";
 import Newsletter from "@/components/Newsletter";
+import SocialsBar from "@/components/SocialsBar";
 
 export default {
   name: "Post",
   components: {
     PostHeader,
     Newsletter,
+    SocialsBar
   },
 
   data() {
