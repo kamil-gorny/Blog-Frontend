@@ -26,6 +26,7 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  font-size: 21px;
 }
 .reactions{
   display: flex;

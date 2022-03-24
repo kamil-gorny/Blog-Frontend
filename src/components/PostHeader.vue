@@ -101,5 +101,6 @@ hr {
   flex-direction: row;
   width: 65px;
   justify-content: space-between;
+  font-size: 21px;
 }
 </style>

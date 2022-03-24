@@ -5,6 +5,7 @@
     <div class="post" v-html="markdownToHtml"></div>
     <Newsletter/>
     <SocialsBar/>
+    <AddComment />
   </div>
 </template>
 
@@ -14,13 +15,15 @@ import hljs from "highlight.js";
 import PostHeader from "@/components/PostHeader";
 import Newsletter from "@/components/Newsletter";
 import SocialsBar from "@/components/SocialsBar";
+import AddComment from "@/components/AddComment";
 
 export default {
   name: "Post",
   components: {
     PostHeader,
     Newsletter,
-    SocialsBar
+    SocialsBar,
+    AddComment
   },
 
   data() {
