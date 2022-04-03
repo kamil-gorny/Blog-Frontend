@@ -39,19 +39,28 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "Login",
   data(){
     return{
       user: {
-        FirstName: '',
-        LastName: '',
-        UserName: '',
         Email: '',
         Password: '',
       },
     }
-}
+},
+  methods:{
+    async onSubmit(e){
+      e.preventDefault()
+      await axios.post("http://localhost:5222/api/auth/login",this.user,{
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+    }
+  }
 }
 </script>
 

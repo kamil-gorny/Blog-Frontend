@@ -26,6 +26,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "Register",
   data(){
@@ -42,13 +44,11 @@ export default {
   methods:{
     async onSubmit(e){
       e.preventDefault()
-      const res = await fetch(` http://localhost:5222/api/user/`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(this.user)
-      });
+       await axios.post("http://localhost:5222/api/auth/register",this.user,{
+         headers: {
+           'Content-Type': 'application/json',
+         },
+       });
     }
   }
 }
