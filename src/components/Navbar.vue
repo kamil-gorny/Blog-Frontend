@@ -20,7 +20,7 @@
         <ul class="dropdown">
           <li><i class="fa-solid fa-user"></i>Profile</li>
           <li><i class="fa-solid fa-gear"></i>Settings</li>
-          <li><i class="fa-solid fa-door-open"></i>Logout</li>
+          <li @click="logout"><i class="fa-solid fa-door-open"></i>Logout</li>
         </ul>
       </li>
 
@@ -32,8 +32,19 @@
 
 <script>
 export default {
-  name: "Navbar"
-}
+  name: "Navbar",
+  data(){
+    return{}
+    },
+  methods:{
+    logout(){
+      localStorage.removeItem("token");
+    }
+  }
+  }
+
+
+
 </script>
 
 <style scoped>
