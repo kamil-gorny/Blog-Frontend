@@ -40,6 +40,7 @@
 
 <script>
 import axios from "axios";
+import router from "@/router";
 
 export default {
   name: "Login",
@@ -54,11 +55,14 @@ export default {
   methods:{
     async onSubmit(e){
       e.preventDefault()
-      await axios.post("http://localhost:5222/api/auth/login",this.user,{
+      let result = await axios.post("http://localhost:5222/api/auth/login",this.user,{
         headers: {
           'Content-Type': 'application/json',
         },
-      });
+      }).then(res =>{
+        localStorage.setItem("token", res.data);
+        router.push({ path: '/' })
+      }, err => console.log(err));
     }
   }
 }
@@ -112,6 +116,7 @@ label{
   font-size: 18px;
 }
 .register-form{
+  height: 80vh;
   display: flex;
   flex-direction: column;
   width: 30%;
