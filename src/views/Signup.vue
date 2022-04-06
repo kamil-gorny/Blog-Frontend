@@ -1,11 +1,11 @@
 <template>
+  <Loader v-if="loading"/>
   <form class="register-form" @submit="onSubmit">
     <div class="form-header">
       <h1>Sign up</h1>
       <p>Create account to start sharing your thoughts</p>
     </div>
     <hr>
-
     <label for="firstName"><b>First Name</b></label>
     <input type="text" placeholder="John" name="firstName" id="firstName" v-model="user.FirstName" required>
 
@@ -28,9 +28,13 @@
 <script>
 import axios from "axios";
 import router from "@/router";
+import Loader from "@/components/Loader";
 
 export default {
   name: "Register",
+  components:{
+    Loader
+  },
   data() {
     return {
       user: {
@@ -40,11 +44,13 @@ export default {
         Email: '',
         Password: '',
       },
+      loading: false
     }
   },
   methods: {
     async onSubmit(e) {
       e.preventDefault()
+      this.loading = true;
       await axios.post("http://localhost:5222/api/auth/register", this.user, {
         headers: {
           'Content-Type': 'application/json',
@@ -126,4 +132,5 @@ button {
   border-radius: 5px;
 
 }
+
 </style>

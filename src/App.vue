@@ -13,8 +13,10 @@ export default {
   name: 'App',
   components: {
     Navbar,
-  }
+  },
 }
+
+
 </script>
 
 <style>
@@ -34,4 +36,6 @@ ul{
 p{
   margin:0;
 }
+
+
 </style>

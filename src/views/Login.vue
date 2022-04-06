@@ -1,4 +1,5 @@
 <template>
+  <Loader v-if="loading"/>
   <form class="register-form" @submit="onSubmit">
     <div class="form-header">
       <h1>Log in</h1>
@@ -8,8 +9,8 @@
     <label for="email"><b>Email</b></label>
     <input type="email" placeholder="john-smith@example.com" name="email" id="email" v-model="user.Email" required>
     <div class="password">
-    <label for="password"><b>Password</b></label>
-    <p class="forgot-password">Forgot password?</p>
+      <label for="password"><b>Password</b></label>
+      <p class="forgot-password">Forgot password?</p>
     </div>
     <input type="password" placeholder="**********" name="password" id="password" v-model="user.Password" required>
     <hr>
@@ -41,27 +42,33 @@
 <script>
 import axios from "axios";
 import router from "@/router";
+import Loader from "@/components/Loader";
 
 export default {
   name: "Login",
-  data(){
-    return{
+  components:{
+    Loader,
+  },
+  data() {
+    return {
       user: {
         Email: '',
         Password: '',
       },
+      loading: false,
     }
-},
-  methods:{
-    async onSubmit(e){
-      e.preventDefault()
-      let result = await axios.post("http://localhost:5222/api/auth/login",this.user,{
+  },
+  methods: {
+    async onSubmit(e) {
+      e.preventDefault();
+      this.loading = true;
+      let result = await axios.post("http://localhost:5222/api/auth/login", this.user, {
         headers: {
           'Content-Type': 'application/json',
         },
-      }).then(res =>{
+      }).then(res => {
         localStorage.setItem("token", res.data);
-        router.push({ path: '/' })
+        router.push({path: '/'})
       }, err => console.log(err));
     }
   }
@@ -69,17 +76,20 @@ export default {
 </script>
 
 <style scoped>
-.google-logo{
+.google-logo {
   height: 25px;
   width: 25px;
 }
-.twitter-logo{
+
+.twitter-logo {
   height: 20px;
   width: 25px;
 }
+
 .or {
   margin-top: 30px;
 }
+
 .or > p {
   width: 100%;
   color: #D6D8DA;
@@ -90,32 +100,38 @@ export default {
 }
 
 .or > p span {
-  background:#fff;
-  padding:0 10px;
+  background: #fff;
+  padding: 0 10px;
 }
-.password{
+
+.password {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
-.forgot-password{
+
+.forgot-password {
   color: #0583D2;
   font-size: 16px;
 }
-.form-header{
+
+.form-header {
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: center;
 }
-h1{
+
+h1 {
   font-size: 40px;
   font-weight: bold;
 }
-label{
+
+label {
   font-size: 18px;
 }
-.register-form{
+
+.register-form {
   height: 80vh;
   display: flex;
   flex-direction: column;
@@ -124,7 +140,8 @@ label{
   margin-left: auto;
   margin-right: auto;
 }
-input{
+
+input {
   height: 40px;
   margin-top: 10px;
   margin-bottom: 20px;
@@ -135,15 +152,16 @@ input{
   line-height: 18px;
 }
 
-input::placeholder{
+input::placeholder {
   font-weight: bold;
-  color:#D6D8DA;
+  color: #D6D8DA;
   line-height: 18px;
 
 }
-button{
+
+button {
   height: 40px;
-  border:none;
+  border: none;
   background-color: #0583D2;
   font-weight: bold;
   color: #fff;
@@ -152,39 +170,40 @@ button{
 
 }
 
-.remember{
+.remember {
   display: flex;
   flex-direction: row;
   align-items: center;
   margin-top: 10px;
 }
-.remember >input{
+
+.remember > input {
   width: 20px;
   height: 20px;
-  border:none;
+  border: none;
   margin: 0 10px 0 0;
 }
 
 .remember > label {
   font-size: 16px;
 }
+
 .remember > input {
   width: 20px;
   height: 20px;
 }
 
-.socials{
+.socials {
   display: flex;
   justify-content: space-around;
-
 }
 
-.socials-button{
+.socials-button {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  width:100px;
-  padding:5px;
+  width: 100px;
+  padding: 5px;
   border-radius: 5px;
   border: 1px solid #D6D8DA;
 }

@@ -9,11 +9,6 @@
         <p class="post-title">(Write-up) THM: Vulnversity</p>
       </div>
 
-<!--      <li class="nav-item">
-        <i class="fa-solid fa-magnifying-glass"></i>
-        <p>Search</p>
-        <p>|</p>
-      </li>-->
       <li class="nav-item" v-if="!this.token==null && !this.token==''">
         <i class="fa-solid fa-magnifying-glass"></i>
         <p>Search</p>
@@ -50,7 +45,7 @@ export default {
       },
       set token(value) {
         localStorage.setItem('token', value);
-      }
+      },
     }
     },
   methods:{
