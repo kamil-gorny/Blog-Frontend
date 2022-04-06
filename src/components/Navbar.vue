@@ -9,12 +9,15 @@
         <p class="post-title">(Write-up) THM: Vulnversity</p>
       </div>
 
-      <li class="nav-item">
+<!--      <li class="nav-item">
         <i class="fa-solid fa-magnifying-glass"></i>
         <p>Search</p>
         <p>|</p>
-      </li>
-      <li class="nav-item">
+      </li>-->
+      <li class="nav-item" v-if="!this.token==null && !this.token==''">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <p>Search</p>
+        <p>|</p>
         <p>Menu</p>
         <i class="fa-solid fa-chevron-down"></i>
         <ul class="dropdown">
@@ -22,6 +25,11 @@
           <li><i class="fa-solid fa-gear"></i>Settings</li>
           <li @click="logout"><i class="fa-solid fa-door-open"></i>Logout</li>
         </ul>
+      </li>
+      <li class="nav-item" v-else>
+        <p @click=login>Log in</p>
+        <p>|</p>
+        <p @click=signup>Sign up</p>
       </li>
 
 
@@ -31,14 +39,29 @@
 </template>
 
 <script>
+import router from "@/router";
+
 export default {
   name: "Navbar",
   data(){
-    return{}
+    return{
+      get token() {
+        return localStorage.getItem('token') || 0;
+      },
+      set token(value) {
+        localStorage.setItem('token', value);
+      }
+    }
     },
   methods:{
     logout(){
       localStorage.removeItem("token");
+    },
+    login(){
+      router.push("/login");
+    },
+    signup(){
+      router.push("/signup");
     }
   }
   }
