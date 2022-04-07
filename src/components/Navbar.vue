@@ -8,8 +8,7 @@
         <img src="../assets/post-image.png" alt="" class="post-image">
         <p class="post-title">(Write-up) THM: Vulnversity</p>
       </div>
-
-      <li class="nav-item" v-if="!this.token==null && !this.token==''">
+      <li class="nav-item" v-if="$root.$data.isAuthorized">
         <i class="fa-solid fa-magnifying-glass"></i>
         <p>Search</p>
         <p>|</p>
@@ -38,18 +37,9 @@ import router from "@/router";
 
 export default {
   name: "Navbar",
-  data(){
-    return{
-      get token() {
-        return localStorage.getItem('token') || 0;
-      },
-      set token(value) {
-        localStorage.setItem('token', value);
-      },
-    }
-    },
   methods:{
     logout(){
+      this.$root.setUnauthorized();
       localStorage.removeItem("token");
     },
     login(){
@@ -107,7 +97,7 @@ export default {
 .dropdown {
   position: absolute;
   top: 1rem;
-  left: -6rem;
+  left: -1rem;
   list-style: none;
   box-shadow: 0px 7px 5px 0px rgba(0, 0, 0, 0.2);
   display: flex;

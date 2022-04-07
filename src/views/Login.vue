@@ -62,12 +62,13 @@ export default {
     async onSubmit(e) {
       e.preventDefault();
       this.loading = true;
-      let result = await axios.post("http://localhost:5222/api/auth/login", this.user, {
+      let result = await axios.post("http://kamilgorny.azurewebsites.net/api/auth/login", this.user, {
         headers: {
           'Content-Type': 'application/json',
         },
       }).then(res => {
         localStorage.setItem("token", res.data);
+        this.$root.setAuthorized();
         router.push({path: '/'})
       }, err => console.log(err));
     }

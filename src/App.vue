@@ -8,14 +8,35 @@
 <script>
 
 import Navbar from "@/components/Navbar";
+import axios from "axios";
 
 export default {
   name: 'App',
   components: {
     Navbar,
   },
+  data(){
+    return{
+      isAuthorized:false,
+    }
+  },
+  methods:{
+    setAuthorized(){
+      this.isAuthorized = true
+    },
+    setUnauthorized(){
+      this.isAuthorized = false
+    }
+  }
 }
-
+axios.interceptors.response.use( res => {
+  return res
+}, err =>{
+  if(err.statusCode == 401){
+      localStorage.removeItem("token");
+      this.isAuthorized = false
+  }
+})
 
 </script>
 

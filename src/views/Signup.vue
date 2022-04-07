@@ -51,12 +51,12 @@ export default {
     async onSubmit(e) {
       e.preventDefault()
       this.loading = true;
-      await axios.post("http://localhost:5222/api/auth/register", this.user, {
+      await axios.post("http://kamilgorny.azurewebsites.net/api/auth/register", this.user, {
         headers: {
           'Content-Type': 'application/json',
         },
       }).then(async () => {
-        await axios.post("http://localhost:5222/api/auth/login", {
+        await axios.post("http://kamilgorny.azurewebsites.net/api/auth/login", {
           Email: this.user.Email,
           Password: this.user.Password
         }, {
@@ -65,6 +65,7 @@ export default {
           },
         }).then(res => {
           localStorage.setItem("token", res.data);
+          this.$root.setAuthorized()
           router.push({path: '/'})
         }, err => console.log(err));
       });
