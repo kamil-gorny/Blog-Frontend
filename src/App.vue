@@ -27,6 +27,11 @@ export default {
     setUnauthorized(){
       this.isAuthorized = false
     }
+  },
+  mounted() {
+    if(localStorage.getItem("token")!== '' || localStorage.getItem("token") != null){
+      this.isAuthorized = true
+    }
   }
 }
 axios.interceptors.response.use( res => {
