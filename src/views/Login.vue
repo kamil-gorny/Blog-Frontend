@@ -1,9 +1,13 @@
 <template>
   <Loader v-if="loading"/>
+
   <form class="register-form" @submit="onSubmit">
+
     <div class="form-header">
       <h1>Log in</h1>
+      <Alert v-if="showAlert" :text=alertText />
     </div>
+
     <hr>
 
     <label for="email"><b>Email</b></label>
@@ -43,11 +47,13 @@
 import axios from "axios";
 import router from "@/router";
 import Loader from "@/components/Loader";
+import Alert from "@/components/Alert";
 
 export default {
   name: "Login",
   components:{
     Loader,
+    Alert
   },
   data() {
     return {
@@ -56,6 +62,8 @@ export default {
         Password: '',
       },
       loading: false,
+      showAlert: false,
+      alertText: ''
     }
   },
   methods: {
@@ -70,7 +78,11 @@ export default {
         localStorage.setItem("token", res.data);
         this.$root.setAuthorized();
         router.push({path: '/'})
-      }, err => console.log(err));
+      }).catch(err =>{
+          this.loading = false;
+          this.showAlert = true;
+          this.alertText = err.response
+      });
     }
   }
 }
