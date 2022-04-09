@@ -11,14 +11,23 @@
   </p>
   <span class="search-box-wrapper">
       <input class="search-box" type="text">
+      <i class="fa-solid fa-magnifying-glass"></i>
   </span>
+  <div class="tag-container">
+
+  </div>
 
 </header>
 </template>
 
 <script>
+import Tag from "@/components/Tag";
+
 export default {
-  name: "Home"
+  name: "Home",
+  components:{
+    Tag,
+  }
 }
 </script>
 
@@ -44,13 +53,10 @@ header{
   flex-direction: row;
   align-items: center;
   font-size: 60px;
-  margin-top:5px;
-  margin-bottom: 20px;
   font-weight: bold;
   color:#3B454E;
   text-align: center;
-  margin-right: auto;
-  margin-left: auto;
+  margin: 5px auto 20px;
 }
 img{
   height: 61px;
@@ -61,10 +67,30 @@ img{
   color:#bbb;
 }
 .search-box{
-  margin-top:30px;
-  height: 50px;
+
+  height: 40px;
   width: 100%;
+  outline: none;
+  border:none;
+  font-size: 20px;
+}
+
+.search-box-wrapper{
+  padding: 5px 20px 5px 5px;
+  font-size: 25px;
+  margin-top:30px;
   border-radius: 15px;
   border: 3.5px solid #3B454E;
+  display: flex;
+  height: 50px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tag-container{
+  display: flex;
+  justify-content: center;
+  margin-top:30px;
+  gap:20px;
 }
 </style>
