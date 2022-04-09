@@ -14,7 +14,7 @@
       <i class="fa-solid fa-magnifying-glass"></i>
   </span>
   <div class="tag-container">
-
+    <Tag v-for="tag in tags" :key="tag.id" :tagText="tag.tagName" />
   </div>
 
 </header>
@@ -22,11 +22,22 @@
 
 <script>
 import Tag from "@/components/Tag";
+import axios from "axios";
 
 export default {
   name: "Home",
   components:{
     Tag,
+  },
+  data(){
+    return{
+      tags: []
+    }
+  },
+  async created() {
+    const res = await axios.get(`http://kamilgorny.azurewebsites.net/api/tag`);
+    this.tags = res.data;
+    console.log(this.tags);
   }
 }
 </script>
@@ -90,6 +101,7 @@ img{
 .tag-container{
   display: flex;
   justify-content: center;
+  flex-direction: row;
   margin-top:30px;
   gap:20px;
 }

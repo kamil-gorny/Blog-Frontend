@@ -1,6 +1,6 @@
 <template>
 <div class="tag">
-  {{tag}}
+  {{tagText}}
 </div>
 </template>
 
@@ -8,7 +8,7 @@
 export default {
   name: "Tag",
   props:{
-    tag:String,
+    tagText:String,
   }
 }
 </script>
