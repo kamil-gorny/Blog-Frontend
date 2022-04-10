@@ -9,9 +9,6 @@
         <p class="post-title">(Write-up) THM: Vulnversity</p>
       </div>
       <li class="nav-item" v-if="$root.$data.isAuthorized">
-        <i class="fa-solid fa-magnifying-glass"></i>
-        <p>Search</p>
-        <p>|</p>
         <p>Menu</p>
         <i class="fa-solid fa-chevron-down"></i>
         <ul class="dropdown">
@@ -97,7 +94,7 @@ export default {
 .dropdown {
   position: absolute;
   top: 1rem;
-  left: -1rem;
+  left: -5rem;
   list-style: none;
   box-shadow: 0px 7px 5px 0px rgba(0, 0, 0, 0.2);
   display: flex;
