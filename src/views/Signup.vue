@@ -65,7 +65,6 @@ export default {
           },
         }).then(res => {
           localStorage.setItem("token", res.data);
-          this.$root.setAuthorized()
           router.push({path: '/'})
         }, err => console.log(err));
       });

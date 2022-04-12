@@ -8,12 +8,13 @@
         <img src="../assets/post-image.png" alt="" class="post-image">
         <p class="post-title">(Write-up) THM: Vulnversity</p>
       </div>
-      <li class="nav-item" v-if="$root.$data.isAuthorized">
+      <li class="nav-item" v-if="$root.isAuth">
         <p>Menu</p>
         <i class="fa-solid fa-chevron-down"></i>
         <ul class="dropdown">
           <li><i class="fa-solid fa-user"></i>Profile</li>
           <li><i class="fa-solid fa-gear"></i>Settings</li>
+          <li v-if="$root.isAdmin"><i class="fa-solid fa-user"></i>Admin Panel</li>
           <li @click="logout"><i class="fa-solid fa-door-open"></i>Logout</li>
         </ul>
       </li>
@@ -31,19 +32,21 @@
 
 <script>
 import router from "@/router";
+import {Role} from "@/helpers/role";
+import {authenticationService} from "@/services/auth_service";
 
 export default {
   name: "Navbar",
+
   methods:{
-    logout(){
-      this.$root.setUnauthorized();
-      localStorage.removeItem("token");
-    },
     login(){
       router.push("/login");
     },
     signup(){
       router.push("/signup");
+    },
+    logout(){
+      authenticationService.logout();
     }
   }
   }

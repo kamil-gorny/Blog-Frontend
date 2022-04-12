@@ -3,6 +3,9 @@ import Post from "@/views/Post";
 import Home from "@/views/Home";
 import Signup from "@/views/Signup";
 import Login from "@/views/Login";
+import {Role} from "@/helpers/role";
+import {authenticationService} from "@/services/auth_service";
+import AdminPanel from "@/views/AdminPanel";
 
 
 const routes = [
@@ -25,7 +28,12 @@ const routes = [
         path: '/login',
         name: 'Login',
         component: Login,
-
+    },
+    {
+        path: '/admin',
+        name: 'Admin',
+        component: AdminPanel,
+        meta: { authorize: [Role.Admin] }
     }
 
 ]
@@ -35,13 +43,21 @@ const router = createRouter({
     routes,
 })
 
-router.beforeEach(async (to, from, next) => {
-    if (to.meta.requiresAuth && to.path !== "/login" && localStorage.getItem("token") == null) {
-        next({name: 'Login'})
-        console.log(to.meta.requiresAuth);
-    } else {
-        next();
+
+router.beforeEach((to, from, next) =>{
+    const { authorize } = to.meta;
+    const currentUser = authenticationService.currentUserValue;
+
+    if (authorize) {
+        if (!currentUser) {
+            return next({ path: '/login', query: { returnUrl: to.path } });
+        }
+        if (authorize.length && !authorize.includes(currentUser.role)) {
+            return next({ path: '/' });
+        }
     }
-});
+    next();
+})
+
 
 export default router;

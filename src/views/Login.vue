@@ -44,10 +44,11 @@
 </template>
 
 <script>
-import axios from "axios";
-import router from "@/router";
 import Loader from "@/components/Loader";
 import Alert from "@/components/Alert";
+import {authenticationService as auth_service} from "@/services/auth_service";
+import router from "@/router";
+
 
 export default {
   name: "Login",
@@ -70,7 +71,12 @@ export default {
     async onSubmit(e) {
       e.preventDefault();
       this.loading = true;
-      let result = await axios.post("http://kamilgorny.azurewebsites.net/api/auth/login", this.user, {
+      await auth_service.login(this.user.Email, this.user.Password);
+      this.loading = false;
+      await router.push('/');
+
+
+     /* let result = await axios.post("http://kamilgorny.azurewebsites.net/api/auth/login", this.user, {
         headers: {
           'Content-Type': 'application/json',
         },
@@ -82,7 +88,7 @@ export default {
           this.loading = false;
           this.showAlert = true;
           this.alertText = err.response
-      });
+      });*/
     }
   }
 }

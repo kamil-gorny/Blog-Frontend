@@ -9,6 +9,8 @@
 
 import Navbar from "@/components/Navbar";
 import axios from "axios";
+import {authenticationService} from "@/services/auth_service";
+import {Role} from "@/helpers/role";
 
 export default {
   name: 'App',
@@ -17,31 +19,21 @@ export default {
   },
   data(){
     return{
-      isAuthorized:false,
+      currentUser: null
     }
   },
-  methods:{
-    setAuthorized(){
-      this.isAuthorized = true
+  created () {
+    authenticationService.currentUser.subscribe(x => this.currentUser = x);
+  },
+  computed: {
+    isAdmin () {
+      return this.currentUser && this.currentUser.role === Role.Admin;
     },
-    setUnauthorized(){
-      this.isAuthorized = false
+    isAuth(){
+      return this.currentUser
     }
   },
-  mounted() {
-    if(localStorage.getItem("token")!== '' || localStorage.getItem("token") != null){
-      this.isAuthorized = true
-    }
-  }
 }
-axios.interceptors.response.use( res => {
-  return res
-}, err =>{
-  if(err.statusCode == 401){
-      localStorage.removeItem("token");
-      this.isAuthorized = false
-  }
-})
 
 </script>
 
