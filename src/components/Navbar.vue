@@ -64,7 +64,9 @@ export default {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-
+  z-index: 1000;
+  height: 60px;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
 }
 
 .left-nav {
@@ -83,9 +85,11 @@ export default {
   list-style: none;
   position: relative;
   display: flex;
+
   flex-direction: row;
   gap: 5px;
   padding-right: 10px;
+  z-index: 10000;
 }
 
 .nav-item:hover {
@@ -94,10 +98,11 @@ export default {
 
 .nav-item:hover ul, .nav-item:focus ul {
   visibility: visible;
-  opacity: 1;
+
 }
 
 .dropdown {
+  background-color: #fff;
   position: absolute;
   top: 1rem;
   left: -5rem;
@@ -107,14 +112,13 @@ export default {
   border-radius: 5px;
   flex-direction: column;
   gap: 0.5rem;
-  opacity: 0;
   visibility: hidden;
   width: 150px;
-  transition: opacity 200ms ease-in-out;
   padding: 10px 5px;
 }
 
 .dropdown > li {
+  background-color: #fff;
   transition: background-color 200ms ease-in-out;
   padding: 10px 5px;
 }
