@@ -12,6 +12,7 @@
         <p>Menu</p>
         <i class="fa-solid fa-chevron-down"></i>
         <ul class="dropdown">
+          <li @click="home"><i class="fa-solid fa-house"></i>Home</li>
           <li><i class="fa-solid fa-user"></i>Profile</li>
           <li><i class="fa-solid fa-gear"></i>Settings</li>
           <li v-if="$root.isAdmin" @click="adminpanel"><i class="fa-solid fa-user"></i>Admin Panel</li>
@@ -19,9 +20,12 @@
         </ul>
       </li>
       <li class="nav-item" v-else>
-        <p @click=login>Log in</p>
-        <p>|</p>
-        <p @click=signup>Sign up</p>
+        <p>Menu</p>
+        <i class="fa-solid fa-chevron-down"></i>
+        <ul class="dropdown">
+          <li @click="login"><i class="fa-solid fa-right-to-bracket"></i>Login</li>
+          <li @click="signup"><i class="fa-solid fa-user-plus"></i>Sign up</li>
+        </ul>
       </li>
 
 
@@ -50,6 +54,9 @@ export default {
     },
     adminpanel(){
       router.push("/admin")
+    },
+    home(){
+      router.push("/")
     }
   }
   }
