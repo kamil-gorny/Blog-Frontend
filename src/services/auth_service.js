@@ -1,7 +1,7 @@
 import { BehaviorSubject } from 'rxjs';
 import axios from "axios";
 import router from "@/router";
-
+import { useRoute } from 'vue-router';
 const currentUserSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('currentUser')));
 
 export const authenticationService = {
@@ -25,4 +25,11 @@ async function login(email, password) {
 function logout() {
     localStorage.removeItem('currentUser');
     currentUserSubject.next(null);
+
+    const { authorize } = this.$route.meta;
+    if(authorize){
+        router.push("/login");
+    }else{
+        router.push("/");
+    }
 }
