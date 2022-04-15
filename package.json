@@ -9,7 +9,6 @@
   },
   "dependencies": {
     "axios": "^0.26.1",
-    "config": "^3.3.7",
     "highlight.js": "^11.5.0",
     "json-server": "^0.17.0",
     "marked": "^4.0.12",
