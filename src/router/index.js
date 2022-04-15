@@ -6,6 +6,7 @@ import Login from "@/views/Login";
 import {Role} from "@/helpers/role";
 import {authenticationService} from "@/services/auth_service";
 import AdminPanel from "@/views/AdminPanel";
+import AddPost from "@/views/AddPost";
 
 
 const routes = [
@@ -34,6 +35,12 @@ const routes = [
         name: 'Admin',
         component: AdminPanel,
         meta: { authorize: [Role.Admin] }
+    },
+    {
+        path: '/admin/post',
+        name: 'AddPost',
+        component: AddPost,
+        meta: {authorize: [Role.Admin]}
     }
 
 ]

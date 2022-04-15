@@ -16,18 +16,23 @@
   <div class="tag-container">
     <Tag v-for="tag in tags" :key="tag.id" :tagText="tag.tagName" />
   </div>
-
+  <PostListItem/>
+  <PostListItem/>
+  <PostListItem/>
+  <PostListItem/>
 </header>
 </template>
 
 <script>
 import Tag from "@/components/Tag";
 import axios from "axios";
+import PostListItem from "@/components/PostListItem";
 
 export default {
   name: "Home",
   components:{
     Tag,
+    PostListItem
   },
   data(){
     return{

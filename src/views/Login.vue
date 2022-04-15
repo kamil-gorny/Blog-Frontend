@@ -8,7 +8,7 @@
       <Alert v-if="showAlert" :text=alertText />
     </div>
 
-    <hr>
+
 
     <label for="email"><b>Email</b></label>
     <input type="email" placeholder="john-smith@example.com" name="email" id="email" v-model="user.Email" required>
@@ -17,7 +17,6 @@
       <p class="forgot-password">Forgot password?</p>
     </div>
     <input type="password" placeholder="**********" name="password" id="password" v-model="user.Password" required>
-    <hr>
     <button type="submit" class="registerbtn">Log in</button>
 
     <div class="remember">
