@@ -5,7 +5,7 @@
       <h1>Sign up</h1>
       <p>Create account to start sharing your thoughts</p>
     </div>
-    <hr>
+
     <label for="firstName"><b>First Name</b></label>
     <input type="text" placeholder="John" name="firstName" id="firstName" v-model="user.FirstName" required>
 
@@ -20,8 +20,22 @@
 
     <label for="password"><b>Password</b></label>
     <input type="password" placeholder="**********" name="password" id="password" v-model="user.Password" required>
-    <hr>
+
     <button type="submit" class="registerbtn">Sign up</button>
+    <div class="or">
+      <p><span>or</span></p>
+    </div>
+
+    <div class="socials">
+      <div class="socials-button">
+        <img class="google-logo" src="../assets/google-logo-png.png" alt="google logo">
+        Google
+      </div>
+      <div class="socials-button">
+        <img class="twitter-logo" src="../assets/twitter.png" alt="google logo">
+        Twitter
+      </div>
+    </div>
   </form>
 </template>
 
@@ -102,6 +116,7 @@ p {
   justify-content: center;
   margin-left: auto;
   margin-right: auto;
+  margin-top:50px;
 }
 
 input {
@@ -132,5 +147,49 @@ button {
   border-radius: 5px;
 
 }
+
+.socials {
+  display: flex;
+  justify-content: space-around;
+}
+
+.socials-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100px;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #D6D8DA;
+}
+
+.google-logo {
+  height: 25px;
+  width: 25px;
+}
+
+.twitter-logo {
+  height: 20px;
+  width: 25px;
+}
+
+.or {
+  margin-top: 30px;
+}
+
+.or > p {
+  width: 100%;
+  color: #D6D8DA;
+  text-align: center;
+  border-bottom: 1px solid #D6D8DA;
+  line-height: 0.1em;
+  margin: 10px 0 20px;
+}
+
+.or > p span {
+  background: #fff;
+  padding: 0 10px;
+}
+
 
 </style>
