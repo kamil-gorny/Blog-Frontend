@@ -7,12 +7,12 @@
     </div>
     <div class="add-section">
 
-      <form class="post-form">
+      <form class="post-form" @submit="onSubmit">
         <label for="title"><b>Title</b></label>
-        <input type="text" placeholder="(Write-up) THM: Vulnversity" name="title" id="title" required>
+        <input type="text" v-model="this.post.title" placeholder="(Write-up) THM: Vulnversity" name="title" id="title" required>
 
         <label for="description"><b>Description</b></label>
-        <input type="text" placeholder="Post about room vulnvernsality" name="description" id="description"  required>
+        <input type="text"  v-model="this.post.description" placeholder="Post about room vulnvernsality" name="description" id="description"  required>
        <b>Tags</b>
         <div class="tags">
           <Tag tag-text="Tryhackme"/>
@@ -21,7 +21,7 @@
           <Tag tag-text="Coding"/>
         </div>
         <label for="content"><b>Content</b></label>
-        <textarea class=content placeholder="Post about room vulnvernsality" name="content" id="content"  required/>
+        <textarea   v-model="this.post.content" class=content placeholder="Post about room vulnvernsality" name="content" id="content"  required/>
         <b>Image</b>
         <div class="image-selector">
         <input type="text" disabled>
@@ -36,11 +36,34 @@
 
 <script>
 import Tag from "@/components/Tag";
+import {postService as post_service} from "@/services/post_service";
+import {authenticationService} from "@/services/auth_service";
+const currentUser = authenticationService.currentUserValue;
 
 export default {
   name: "AddPost",
   components:{
     Tag,
+  },
+  data(){
+    return{
+      post:{
+        title: "",
+        description: "",
+        content: "",
+        creationDate: new Date().toJSON(),
+        userId: currentUser.userId
+      },
+    }
+  },
+  methods:{
+    async onSubmit(e){
+      console.log("dupa");
+      e.preventDefault();
+      this.loading = true;
+      await post_service.addPost(this.post);
+      this.loading = false;
+    }
   }
 }
 </script>
