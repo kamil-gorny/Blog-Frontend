@@ -1,10 +1,10 @@
 <template>
   <div class="post-lists-item">
-    <img class="post-image" src="../assets/post-image.png" alt="post image">
+    <img class="post-image" src="{{imageUrl}}" alt="post image">
     <div class="post">
       <div class="post-content">
-      <p class="post-title">(Write-up) THM: Vulnversity</p>
-        <p class="post-description">The room will provide basic information about the tools require with the guided sections, but will also require some outside research. I highly recommend completing this room before moving onto intermediate boxes, especially if you’re relatively new to the different tools available.</p>
+      <p class="post-title">{{title}}</p>
+        <p class="post-description">{{description}}</p>
       </div>
     </div>
   </div>
@@ -12,7 +12,12 @@
 
 <script>
 export default {
-  name: "PostListItem"
+  name: "PostListItem",
+  props: {
+    title: String,
+    description:String,
+    imageUrl: String
+  }
 }
 </script>
 
