@@ -1,6 +1,6 @@
 <template>
   <div class="post-lists-item">
-    <img class="post-image" src="{{imageUrl}}" alt="post image">
+    <img class="post-image" src="{{image}}" alt="post image">
     <div class="post">
       <div class="post-content">
       <p class="post-title">{{title}}</p>
@@ -16,7 +16,7 @@ export default {
   props: {
     title: String,
     description:String,
-    imageUrl: String
+    image: String
   }
 }
 </script>

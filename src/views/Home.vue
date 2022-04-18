@@ -16,10 +16,7 @@
   <div class="tag-container">
     <Tag v-for="tag in tags" :key="tag.id" :tagText="tag.tagName" />
   </div>
-  <PostListItem/>
-  <PostListItem/>
-  <PostListItem/>
-  <PostListItem/>
+  <PostListItem v-for="post in posts" :key="post.id" :title="post.title" :description="post.description" :image="post.imageUrl"/>
 </header>
 </template>
 
@@ -27,6 +24,7 @@
 import Tag from "@/components/Tag";
 import axios from "axios";
 import PostListItem from "@/components/PostListItem";
+import {postService} from "@/services/post_service";
 
 export default {
   name: "Home",
@@ -36,13 +34,15 @@ export default {
   },
   data(){
     return{
-      tags: []
+      tags: [],
+      posts:[]
     }
   },
   async created() {
-    const res = await axios.get(`http://kamilgorny.azurewebsites.net/api/tag`);
-    this.tags = res.data;
-    console.log(this.tags);
+    const tags = await axios.get(`http://kamilgorny.azurewebsites.net/api/tag`);
+    const posts = await postService.getPosts();
+    this.tags = tags.data;
+    this.posts = posts.data;
   }
 }
 </script>

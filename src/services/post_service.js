@@ -33,5 +33,5 @@ async function getPost(id){
 }
 
 async function getPosts(){
-
+  return await axios.get("http://kamilgorny.azurewebsites.net/api/post");
 }
