@@ -13,10 +13,10 @@
     </tr>
     </thead>
     <tbody>
-    <tr>
-      <th>(Write-up) THM: Vulnversity</th>
-      <th>Tryhackme</th>
-      <th>19.12.2021</th>
+    <tr v-for="post in posts" :key="post.id">
+      <th>{{post.title}}</th>
+      <th>{{ post.tag }}</th>
+      <th>{{ post.creationDate }}</th>
       <th><i class="fa-solid fa-pen-to-square"></i></th>
       <th><i class="fa-solid fa-trash-can"></i></th>
     </tr>
@@ -29,13 +29,24 @@
 <script>
 import Button from "@/components/Button";
 import router from "@/router";
+import {postService} from "@/services/post_service";
+
 export default {
   name: "PostsTable",
   components: {Button},
+  data(){
+    return {
+        posts: []
+    }
+  },
   methods:{
     addPost(){
       router.push("/admin/post")
     }
+  },
+  async created() {
+    const posts = await postService.getPosts();
+    this.posts = posts;
   }
 }
 </script>
