@@ -18,7 +18,7 @@
       <th>{{ post.tag }}</th>
       <th>{{ post.creationDate }}</th>
       <th><i class="fa-solid fa-pen-to-square"></i></th>
-      <th><i class="fa-solid fa-trash-can"></i></th>
+      <th><i class="fa-solid fa-trash-can" @click="deletePost(post.id)"></i></th>
     </tr>
     </tbody>
   </table>
@@ -42,6 +42,9 @@ export default {
   methods:{
     addPost(){
       router.push("/admin/post")
+    },
+    async deletePost(id){
+      await postService.removePost(id);
     }
   },
   async created() {
