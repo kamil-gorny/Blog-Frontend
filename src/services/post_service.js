@@ -11,7 +11,6 @@ export const postService = {
 
 
 async function addPost(post){
-    console.log(post);
     await axios.post("http://kamilgorny.azurewebsites.net/api/post", post, {
         headers: {
             'Content-Type': 'application/json',
