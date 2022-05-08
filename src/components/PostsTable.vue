@@ -49,7 +49,7 @@ export default {
   },
   async created() {
     const posts = await postService.getPosts();
-    this.posts = posts;
+    this.posts = posts.data;
   }
 }
 </script>
