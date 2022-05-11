@@ -25,6 +25,7 @@
         <b>Image</b>
         <div class="image-selector">
         <input type="text" disabled>
+          <input type="file" @change="onFileUpload"/>
         <div class="choose-image">Choose file</div>
         </div>
 
@@ -52,20 +53,32 @@ export default {
         description: "",
         content: "",
         creationDate: new Date().toJSON(),
+        imageBase64: "",
         userId: currentUser.userId
       },
     }
   },
   methods:{
     async onSubmit(e){
-      console.log("dupa");
       e.preventDefault();
       this.loading = true;
       await post_service.addPost(this.post);
       this.loading = false;
+    },
+    onFileUpload(){
+      const file = document.querySelector('input[type=file]').files[0]
+      const reader = new FileReader()
+
+      reader.onloadend = () => {
+        this.post.imageBase64 = reader.result;
+      }
+
+      reader.readAsDataURL(file);
     }
   }
 }
+
+
 </script>
 
 <style scoped>
