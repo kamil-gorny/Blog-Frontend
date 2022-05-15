@@ -7,6 +7,7 @@ const currentUserSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('
 export const authenticationService = {
     login,
     logout,
+    signup,
     currentUser: currentUserSubject.asObservable(),
     get currentUserValue () { return currentUserSubject.value }
 };
@@ -32,4 +33,11 @@ function logout() {
     }else{
         router.push("/");
     }
+}
+
+async function signup(user){
+    await axios.post("http://kamilgorny.azurewebsites.net/api/auth/login", user, {
+        headers: {
+            'Content-Type': 'application/json',
+        }});
 }
