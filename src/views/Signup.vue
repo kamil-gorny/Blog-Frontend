@@ -43,6 +43,7 @@
 import axios from "axios";
 import router from "@/router";
 import Loader from "@/components/Loader";
+import {authenticationService as auth_service} from "@/services/auth_service";
 
 export default {
   name: "Register",
@@ -70,17 +71,8 @@ export default {
           'Content-Type': 'application/json',
         },
       }).then(async () => {
-        await axios.post("http://kamilgorny.azurewebsites.net/api/auth/login", {
-          Email: this.user.Email,
-          Password: this.user.Password
-        }, {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }).then(res => {
-          localStorage.setItem("token", res.data);
-          router.push({path: '/'})
-        }, err => console.log(err));
+        await auth_service.login(this.user.Email, this.user.Password);
+        await router.push('/');
       });
     }
   }
