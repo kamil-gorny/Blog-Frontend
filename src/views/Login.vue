@@ -17,6 +17,7 @@
       <p class="forgot-password">Forgot password?</p>
     </div>
     <input type="password" placeholder="**********" name="password" id="password" v-model="user.Password" required>
+    <ReCaptcha class="recaptcha"/>
     <button type="submit" class="registerbtn">Log in</button>
 
     <div class="remember">
@@ -47,11 +48,13 @@ import Loader from "@/components/Loader";
 import Alert from "@/components/Alert";
 import {authenticationService as auth_service} from "@/services/auth_service";
 import router from "@/router";
-
+import Recaptcha from "@/components/Recaptcha";
+import ReCaptcha from "@/components/Recaptcha";
 
 export default {
   name: "Login",
   components:{
+    ReCaptcha,
     Loader,
     Alert
   },
@@ -224,5 +227,9 @@ button {
   padding: 5px;
   border-radius: 5px;
   border: 1px solid #D6D8DA;
+}
+
+.recaptcha{
+  margin-bottom: 20px;
 }
 </style>
