@@ -76,21 +76,6 @@ export default {
       await auth_service.login(this.user.Email, this.user.Password);
       this.loading = false;
       await router.push('/');
-
-
-     /* let result = await axios.post("http://kamilgorny.azurewebsites.net/api/auth/login", this.user, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }).then(res => {
-        localStorage.setItem("token", res.data);
-        this.$root.setAuthorized();
-        router.push({path: '/'})
-      }).catch(err =>{
-          this.loading = false;
-          this.showAlert = true;
-          this.alertText = err.response
-      });*/
     }
   }
 }
