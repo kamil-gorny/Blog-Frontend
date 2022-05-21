@@ -1,5 +1,5 @@
 <template>
-  <div class="post-lists-item">
+  <a class="post-lists-item">
     <img class="post-image" src="{{image}}" alt="post image">
     <div class="post">
       <div class="post-content">
@@ -7,7 +7,7 @@
         <p class="post-description">{{description}}</p>
       </div>
     </div>
-  </div>
+  </a>
 </template>
 
 <script>
@@ -50,5 +50,9 @@ export default {
   .post-description{
     margin-top:10px;
     color: #D6D8DA
+  }
+  a{
+    text-decoration: none;
+
   }
 </style>

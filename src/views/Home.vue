@@ -16,7 +16,7 @@
   <div class="tag-container">
     <Tag v-for="tag in tags" :key="tag.id" :tagText="tag.tagName" />
   </div>
-  <PostListItem v-for="post in posts" :key="post.id" :title="post.title" :description="post.description" :image="post.imageUrl"/>
+  <PostListItem v-for="post in posts" :key="post.id" :title="post.title" :description="post.description" :image="post.imageUrl" :href="'/posts/' + post.id" />
 </header>
 </template>
 

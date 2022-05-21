@@ -85,7 +85,7 @@ export default {
   },
 
   async beforeRouteEnter(to, from, next) {
-    const res = await fetch(`http://localhost:5003/posts/${to.params.id}`);
+    const res = await fetch(`http://kamilgorny.azurewebsites.net/api/posts/${to.params.id}`);
     next(async vm => {
       vm.post = await res.json();
     });
